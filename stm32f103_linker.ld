@@ -1,6 +1,6 @@
 /* 
 Author: Dylan Bomgardner
-Based On: https://medium.com/@csrohit/writing-linker-script-for-stm32-arm-cortex-m3-%EF%B8%8F-fdc2acaaddcc
+Based On: https://www.youtube.com/watch?v=B7oKdUvRhQQ&list=PLERTijJOmYrDiiWd10iRHY0VRHdJwUH4g&index=4&ab_channel=FastbitEmbeddedBrainAcademy
 */
 
 /*
@@ -24,7 +24,7 @@ ENTRY(Reset_Handler)
 */
 MEMORY
 {
-    FLASH (rx)  : ORIGIN=0x0800000,    LENGTH = 256K
+    FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 256K
     SRAM  (rwx) : ORIGIN = 0x20000000, LENGTH = 48K
 }
 
@@ -32,6 +32,43 @@ MEMORY
     SECTIONS SECTION ;)
 */
 
+__max_heap_size  = 0x400; /* Symbol declaration not a variable.*/
+__max_stack_size = 0x200;
+SECTIONS
+{
+    
+    .text :
+    {
+        /* Put the .vector section before the text section.*/
+        *(.vector)
+        /* Consider .text and .rodata of all input files */
+        *(.text)
+        *(.rodata)
+        . = ALIGN(4);      /* Assign the location to an aligned value.*/
+        _etext = .; /* Assign the current address at the end of .rodata to this symbol. */
+    }> FLASH
+    /* }> FLASH AT> FLASH */
+    /* }> vma AT> lma */
+    /* virtual memory address AT load memory address*/
+    .data :
+    {
+        _sdata = .;
+        *(.data)
+        . = ALIGN(4); 
+        _edata = .;
+    }>SRAM AT> FLASH
+
+    .bss :
+    {
+        _sbss = .;
+        /* Include COMMON in the bss */
+        *(.bss)
+        *(COMMON)
+        . = ALIGN(4); 
+        _ebss = .;
+    }>SRAM
+    /* Only has vma so no flash. */
+}
 
 
 

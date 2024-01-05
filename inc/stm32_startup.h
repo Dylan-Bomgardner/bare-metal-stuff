@@ -11,8 +11,20 @@
 
 #define STACK_START SRAM_END
 
-void Reset_Handler(void);
 
+
+//GET THESE SYMBOLS FROM THE LINKER
+extern uint32_t _etext; //End of text section
+extern uint32_t _sdata; //Start of data section
+extern uint32_t _edata; //End of data section
+extern uint32_t _sbss;
+extern uint32_t _ebss;
+
+
+//Main declaration.
+int main(void);
+
+void Reset_Handler(void);
 //Allows programmer to override the function by using weak.
 void NMI_Handler(void) __attribute__((weak, alias("Default_Handler")));
 void HardFault_Handler(void) __attribute__((weak, alias("Default_Handler")));

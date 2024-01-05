@@ -1,2 +1,2 @@
 # keyboard-software
-Software for keyboard project.
+Software and Hardware for keyboard project.

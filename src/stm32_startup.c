@@ -7,7 +7,7 @@ void Reset_Handler(void) {
     //pointer to store the address of where the data section starts.
     uint8_t *pDest = (uint8_t*)&_sdata; //start of sram
 
-    uint8_t *pSource = (uint8_t*)&_etext; //flash
+    uint8_t *pSource = (uint8_t*)&_data_loadaddr; //flash
     
 
     //copy the data from flash into ram

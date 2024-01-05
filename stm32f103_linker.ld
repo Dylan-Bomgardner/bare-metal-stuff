@@ -58,6 +58,8 @@ SECTIONS
         _edata = .;
     }>SRAM AT> FLASH
 
+    _data_loadaddr = LOADADDR(._sdata);
+
     .bss :
     {
         _sbss = .;

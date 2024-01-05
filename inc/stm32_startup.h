@@ -15,10 +15,11 @@
 
 //GET THESE SYMBOLS FROM THE LINKER
 extern uint32_t _etext; //End of text section
-extern uint32_t _sdata; //Start of data section
-extern uint32_t _edata; //End of data section
+extern uint32_t _sdata; //Start of data section in sram
+extern uint32_t _edata; //End of data section in sram
 extern uint32_t _sbss;
 extern uint32_t _ebss;
+extern uint32_t _data_loadaddr; //where data was loaded into flash.
 
 
 //Main declaration.

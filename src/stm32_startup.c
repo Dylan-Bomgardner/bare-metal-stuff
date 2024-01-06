@@ -1,5 +1,43 @@
 #include "../inc/stm32_startup.h"
 
+
+uint32_t vectors[] __attribute__((section(".vector"))) = {
+    STACK_START,
+    (uint32_t)&Reset_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&HardFault_Handler,
+    (uint32_t)&BusFault_Handler,
+    (uint32_t)&UsageFault_Handler,
+    (uint32_t)0,
+    (uint32_t)0,
+    (uint32_t)0,
+    (uint32_t)0,
+    (uint32_t)&SVCall_Handler,
+    (uint32_t)&DebugMonitor_Handler,
+    (uint32_t)0,
+    (uint32_t)&PendSV_Handler,
+    (uint32_t)&SysTick_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+    (uint32_t)&NMI_Handler,
+
+
+};
+
 void Reset_Handler(void) {
     //copy .data section to SRAM
     uint32_t size = (uint32_t)&_edata - (uint32_t)&_sdata; /* How many bytes need to be transfered to SRAM. Access the value present at the _edata address which is the address.*/

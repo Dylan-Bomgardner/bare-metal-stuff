@@ -1,6 +1,5 @@
 /*
     Author: Dylan Bomgardner
-    Date: 1/4/2024
 */
 
 #include "common_defines.h"

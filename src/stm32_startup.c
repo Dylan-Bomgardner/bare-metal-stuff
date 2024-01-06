@@ -21,5 +21,5 @@ void Reset_Handler(void) {
         *pDest++ = 0;
     }
     //call main()
-    main();
+    (void)main();
 }

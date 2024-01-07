@@ -105,3 +105,7 @@ void Reset_Handler(void) {
     //call main()
     (void)main();
 }
+
+void Default_Handler(void) {
+    while(1);
+}

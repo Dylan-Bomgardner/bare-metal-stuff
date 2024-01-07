@@ -32,40 +32,5 @@ void BusFault_Handler(void) __attribute__((weak, alias("Default_Handler")));
 //Default handler for all system stuff as a weak.
 void Default_Handler(void);
 
-uint32_t vectors[] __attribute__((section(".vector"))) = {
-    STACK_START,
-    (uint32_t)&Reset_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&HardFault_Handler,
-    (uint32_t)&BusFault_Handler,
-    (uint32_t)&UsageFault_Handler,
-    (uint32_t)0,
-    (uint32_t)0,
-    (uint32_t)0,
-    (uint32_t)0,
-    (uint32_t)&SVCall_Handler,
-    (uint32_t)&DebugMonitor_Handler,
-    (uint32_t)0,
-    (uint32_t)&PendSV_Handler,
-    (uint32_t)&SysTick_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&NMI_Handler,
 
-
-};
 

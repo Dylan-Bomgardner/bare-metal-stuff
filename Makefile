@@ -43,10 +43,10 @@ all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CC) $(LDFLAGS) -o $@ $^
-
+	mv $(TARGET) $(MAPFILE) build/
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-	mv $(TARGET) $(MAPFILE) build/
+	
 	
 
 clean:

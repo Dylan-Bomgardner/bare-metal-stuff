@@ -24,8 +24,8 @@ ENTRY(Reset_Handler)
 */
 MEMORY
 {
-    FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 256K
-    SRAM  (rwx) : ORIGIN = 0x20000000, LENGTH = 48K
+    FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 128K
+    SRAM  (rwx) : ORIGIN = 0x20000000, LENGTH = 20K/*48K*/
 }
 
 /*
@@ -40,7 +40,7 @@ SECTIONS
     .text :
     {
         /* Put the .vector section before the text section.*/
-        *(.vector)
+        KEEP(*(.vector))
         /* Consider .text and .rodata of all input files */
         *(.text)
         *(.rodata)
@@ -58,7 +58,7 @@ SECTIONS
         _edata = .;
     }>SRAM AT> FLASH
 
-    _data_loadaddr = LOADADDR(._sdata);
+    _data_loadaddr = LOADADDR(.data);
 
     .bss :
     {

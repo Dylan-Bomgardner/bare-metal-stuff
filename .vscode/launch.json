@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug STM32",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceRoot}",
+            "executable": "firmware.elf", // Replace with your binary
+            "serverpath": "/usr/bin/openocd", // Replace with the path to your OpenOCD executable
+            "gdbPath": "/usr/bin/gdb-multiarch",
+            "configFiles": [
+                "/usr/share/openocd/scripts/interface/stlink.cfg", // Replace with your ST-Link configuration
+                "/usr/share/openocd/scripts/target/stm32f1x.cfg"    // Replace with your STM32F1 series configuration
+            ],
+            "preLaunchCommands": [
+                "reset halt",
+                "load",
+                "monitor reset run"
+            ]
+        }
+    ]
+}

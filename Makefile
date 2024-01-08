@@ -33,7 +33,7 @@ OPENOCD_INTERFACE = stlink
 OPENOCD_TARGET = stm32f1x
 
 # Flash command
-FLASH_CMD = openocd -f interface/$(OPENOCD_INTERFACE).cfg -f target/$(OPENOCD_TARGET).cfg -c "program $(TARGET) verify reset exit"
+FLASH_CMD = openocd -f interface/$(OPENOCD_INTERFACE).cfg -f target/$(OPENOCD_TARGET).cfg -c "program build/$(TARGET) verify reset exit"
 DBUG_CMD = openocd -f interface/$(OPENOCD_INTERFACE).cfg -f target/$(OPENOCD_TARGET).cfg
 GDB_CMD = gdb-multiarch -q -x tools/gdb_init.gdb build/firmware.elf
 

@@ -19,7 +19,7 @@ void gpio_enable(void) {
 
 void gpio_setup(uint32_t GPIO_PORT, uint8_t GPIO_PIN, GPIO_Conf GPIO_Conf, GPIO_Speed GPIO_SPEED) {
     volatile GPIO_TypeDef* GPIO = (GPIO_TypeDef*) GPIO_PORT;
-    uint8_t cr_offset = (GPIO_PIN % 8) * 4; 
+    uint8_t  cr_offset = (GPIO_PIN % 8) * 4; 
     uint32_t pin_config = ((GPIO_Conf << 2) | GPIO_SPEED) << cr_offset;
     uint32_t mask = ~(0b1111 << cr_offset);
 
@@ -32,7 +32,6 @@ void gpio_setup(uint32_t GPIO_PORT, uint8_t GPIO_PIN, GPIO_Conf GPIO_Conf, GPIO_
         GPIO->CRH &= mask;
         GPIO->CRH |= pin_config;
     }
-
     //config should be done
 }
 

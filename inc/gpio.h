@@ -49,12 +49,12 @@ typedef enum GPIO_Speed {
 } GPIO_Speed;
 
 typedef enum GPIO_Conf {
-    INPUT_ANALOG = 0b00,
-    INPUT_FLOATING = 0b01,
-    INPUT_PUPD = 0b10,
-    OUTPUT_PUPL = 0b00,
-    OUTPUT_ODRAIN = 0b01,
-    OUTPUT_ALT_PUPL = 0b10,
+    INPUT_ANALOG      = 0b00,
+    INPUT_FLOATING    = 0b01,
+    INPUT_PUPD        = 0b10,
+    OUTPUT_PUPL       = 0b00,
+    OUTPUT_ODRAIN     = 0b01,
+    OUTPUT_ALT_PUPL   = 0b10,
     OUTPUT_ALT_ODRAIN = 0b11
 } GPIO_Conf;
 
@@ -62,13 +62,14 @@ typedef enum GPIO_Conf {
     Function Definitions.
 */
 
-//Enable all gpio pins.
-
-//LED2 is Pin A5
-
-
+//Enable the GPIO Clock
 void gpio_enable(void);
+
+// Setup a GPIO Pin
 void gpio_setup(uint32_t GPIO_PORT, uint8_t GPIO_PIN, GPIO_Conf GPIO_Conf, GPIO_Speed GPIO_SPEED);
 
+//Set a GPIO Pin to 1
 void gpio_set(uint32_t GPIO_PORT, uint8_t GPIO_PIN);
+
+//Set a GPIO Pin to 0
 void gpio_clear(uint32_t GPIO_PORT, uint8_t GPIO_PIN);

@@ -7,7 +7,7 @@
 volatile int j;
 //enable all the GPIO PINS
 void gpio_enable(void) {
-    volatile uint32_t* APB2 = CLK_APB2;
+    volatile uint32_t* APB2 = (uint32_t *) CLK_APB2;
     *APB2 |= (0b100);
 
 

@@ -62,14 +62,36 @@ typedef enum GPIO_Conf {
     Function Definitions.
 */
 
-//Enable the GPIO Clock
+/*
+    Enable the GPIO Clock
+*/
 void gpio_enable(void);
 
-// Setup a GPIO Pin
+
+/*
+    Setup a GPIO Pin
+    @param[0] GPIO_PORT
+    @param[1] GPIO_PIN
+    @param[2] GPIO_Configuration
+    @param[3] GPIO_Speed
+    @return Void
+*/
 void gpio_setup(uint32_t GPIO_PORT, uint8_t GPIO_PIN, GPIO_Conf GPIO_Conf, GPIO_Speed GPIO_SPEED);
 
-//Set a GPIO Pin to 1
+
+/*
+    Set a GPIO Pin to 1
+    @param[0] GPIO_PORT
+    @param[1] GPIO_PIN
+    @return Void
+*/
 void gpio_set(uint32_t GPIO_PORT, uint8_t GPIO_PIN);
 
-//Set a GPIO Pin to 0
+
+/*
+    Set a GPIO Pin to 0
+    @param[0] GPIO_PORT
+    @param[1] GPIO_PIN
+    @return Void
+*/
 void gpio_clear(uint32_t GPIO_PORT, uint8_t GPIO_PIN);

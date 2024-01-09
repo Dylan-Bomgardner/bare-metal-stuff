@@ -1,5 +1,9 @@
 #include "../inc/gpio.h"
 
+
+
+
+
 volatile int j;
 //enable all the GPIO PINS
 void gpio_enable(void) {
@@ -13,15 +17,32 @@ void gpio_enable(void) {
     }
 }
 
-void gpio_setup(void) {
-    gpio_enable();
-    volatile uint32_t* GPIOA = (uint32_t *) GPIOA_BASE;
-    //setup pin A5 to output push pull
-    
-    //set Mode to output 10mhz MODE
-    *GPIOA |= (0b11 << 20);
-    //set the output to push pull CNF 00
-    *GPIOA &=  ~(0b11 << 22);
-    
-}   
+void gpio_setup(uint32_t GPIO_PORT, uint8_t GPIO_PIN, GPIO_Conf GPIO_Conf, GPIO_Speed GPIO_SPEED) {
+    volatile GPIO_TypeDef* GPIO = (GPIO_TypeDef*) GPIO_PORT;
+    uint8_t cr_offset = (GPIO_PIN % 8) * 4; 
+    uint32_t pin_config = ((GPIO_Conf << 2) | GPIO_SPEED) << cr_offset;
+    uint32_t mask = ~(0b1111 << cr_offset);
+
+    //Depending on which pin, choose the low or the high register
+    if (GPIO_PIN <= 7) {
+        GPIO->CRL &= mask;
+        GPIO->CRL |= pin_config;        
+    }
+    else {
+        GPIO->CRH &= mask;
+        GPIO->CRH |= pin_config;
+    }
+
+    //config should be done
+}
+
+void gpio_set(uint32_t GPIO_PORT, uint8_t GPIO_PIN) {
+    volatile GPIO_TypeDef* GPIO = (GPIO_TypeDef*) GPIO_PORT;
+    GPIO->ODR |= (1 << GPIO_PIN);
+}
+
+void gpio_clear(uint32_t GPIO_PORT, uint8_t GPIO_PIN) {
+    volatile GPIO_TypeDef* GPIO = (GPIO_TypeDef*) GPIO_PORT;
+    GPIO->ODR &= ~(1 << GPIO_PIN);
+}
 

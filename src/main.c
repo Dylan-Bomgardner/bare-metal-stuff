@@ -34,23 +34,19 @@ void clock_enable(void) {
 }
 int main() {
     clock_enable();
-    gpio_setup();
-    //gpio_enable();
-    volatile uint32_t* GPIOA = (uint32_t *)(GPIOA_BASE);
-
-    volatile uint32_t* GPIOA_ODR = (uint32_t *) (GPIOA_BASE + 0xC);
+    gpio_enable();
+    gpio_setup(GPIO_PORTA, GPIO_PIN5, OUTPUT_PUPL, OUTPUT_50MHz);
 
     while(1) {
-        //turn led on.
-        
 
-        *GPIOA_ODR |= 0b100000; 
+        //turn led on.
+        gpio_set(GPIO_PORTA, GPIO_PIN5); 
 
         for (volatile int i = 0; i < 500000; i++) {
 
         }
         //turn led off.
-        *GPIOA_ODR &= ~0b100000; 
+        gpio_clear(GPIO_PORTA, GPIO_PIN5); 
         for (volatile int i = 0; i < 500000; i++) {
 
         }

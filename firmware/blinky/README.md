@@ -1,5 +1,5 @@
-# keyboard-software
-Software and Hardware for keyboard project.
+# bare-metal-software
+Software including small gpio driver and startup script.
 
 Currently have blinky working 😏
 

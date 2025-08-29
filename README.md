@@ -1,5 +1,5 @@
 # bare-metal-software
-Software including small gpio driver and startup script.
+Messing around with linker scripts and no libraries
 
 Currently have blinky working 😏
 
